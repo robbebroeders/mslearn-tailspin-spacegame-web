@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/dotnet:6.0
+FROM mcr.microsoft.com/devcontainers/dotnet:8.0-jammy
 
 # Install NodeJS
 # [Choice] Node.js version: none, lts/*, 18, 16, 14
@@ -27,10 +27,10 @@ RUN cd /home/vscode && mkdir azure-pipelines && cd azure-pipelines
 
 # input Azure DevOps agent arguments
 ARG ARCH="x64"
-ARG AGENT_VERSION="2.206.1"
+ARG AGENT_VERSION="3.258.1"
 
 RUN cd /home/vscode/azure-pipelines \
-    && curl -O -L https://vstsagentpackage.azureedge.net/agent/${AGENT_VERSION}/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz \
+    && curl -O -L https://download.agent.dev.azure.com/agent/${AGENT_VERSION}/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz \
     && tar xzf /home/vscode/azure-pipelines/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz \
     && /home/vscode/azure-pipelines/bin/installdependencies.sh
 
